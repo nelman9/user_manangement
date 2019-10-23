@@ -8,11 +8,30 @@
                 <div class="card-header">Users Dashboard</div>
 
                 <div class="card-body">
-                    @foreach($users as $user)
-                    <p>{{ $user->name}}-{{$user->email}}</p>
-                    @endforeach
+                   
 
-                    List of registred members!
+                    <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+     @foreach($users as $user)
+    <tr>
+      <th scope="row">{{$user->id}}</th>
+      <td>{{$user->name}}</td>
+      <td>{{$user->email}}</td>
+      <td><button type="button" class="btn btn-success">Edit</button>
+      <button type="button" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
                 </div>
             </div>
         </div>
