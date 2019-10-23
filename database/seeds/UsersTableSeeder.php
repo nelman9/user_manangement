@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use illuminate\support\Facades\Harsh;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Role;
 
@@ -17,23 +17,23 @@ class UsersTableSeeder extends Seeder
     {
         //
         user::truncate();
-        DB::table('roles_user')->truncate
+        DB::table('roles_user')->truncate();
 
-        $adminRole=Role::where('name','admin')=>first();
-        $authorRole=Role::where('name','author')=>first();
-        $userRole=Role::where('name','user')=>first();
+        $adminRole=Role::where('name','admin')->first();
+        $authorRole=Role::where('name','author')->first();
+        $userRole=Role::where('name','user')->first();
 
-        $admin=User::create(['name' => 'administrator',
+        $admin=User::create(['name' => 'admin',
                              'email' => 'admin@com',
-                             'password'=>Harsh::make('admin')]);
+                             'password' =>Hash::make('admin')]);
 
          $author=User::create(['name' => 'author',
                              'email' => 'author@com',
-                             'password'=>Harsh::make('admin')]);
+                             'password'=>Hash::make('admin')]);
 
          $normal=User::create(['name' => 'user',
                              'email' => 'user@com',
-                             'password'=>Harsh::make('admin')]);
+                             'password'=>Hash::make('admin')]);
 
          $admin->roles()->attach($adminRole);   
          $author->roles()->attach( $authorRole); 
