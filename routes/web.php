@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,7 +19,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('home.destroy/{id}', 'HomeController@destroy')->name('home.destroy');
+Route::delete('home.destroy/{id}', 'HomeController@destroy');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

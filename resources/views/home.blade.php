@@ -16,7 +16,8 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
-      <th scope="col">Actions</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -25,8 +26,13 @@
       <th scope="row">{{$user->id}}</th>
       <td>{{$user->name}}</td>
       <td>{{$user->email}}</td>
-      <td><button type="button" class="btn btn-success">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
+      <td><button type="button" class="btn btn-success">Edit</button></td>
+      <td>
+        <form action="{{ route('home.destroy', $user->id)}}" method="post">
+           @csrf
+           @method('DELETE')
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
       </td>
     </tr>
     @endforeach

@@ -28,4 +28,12 @@ class HomeController extends Controller
         $users=User::all();
         return view('home')->with('users',$users);
     }
+
+    public function destroy($id)
+    {
+        $user= User::findOrFail($id);
+        $user->delete();
+
+        return redirect('/home');
+    }
 }
