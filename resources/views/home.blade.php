@@ -26,7 +26,7 @@
       <th scope="row">{{$user->id}}</th>
       <td>{{$user->name}}</td>
       <td>{{$user->email}}</td>
-      <td><button type="button" class="btn btn-success">Edit</button></td>
+      <td><a href="{{ route('user.edit', $user->id)}}" class="btn btn-primary">Edit</a></td>
       <td>
         <form action="{{ route('home.destroy', $user->id)}}" method="post">
            @csrf

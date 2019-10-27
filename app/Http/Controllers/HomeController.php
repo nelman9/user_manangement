@@ -36,4 +36,23 @@ class HomeController extends Controller
 
         return redirect('/home');
     }
+
+    public function edit($id)
+    {
+        $user=User::findorFail($id);
+        return view('edit', compact('user'));
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        $validatedinfo = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|max:255',
+        ]);
+ 
+        User::whereId($id)->update($validatedinfo);
+
+        return redirect('/home')->with('success', 'user is successfully updated');
+    }
 }

@@ -21,6 +21,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('home.destroy/{id}', 'HomeController@destroy')->name('home.destroy');
 Route::delete('home.destroy/{id}', 'HomeController@destroy');
+Route::get('user.edit/{id}', 'HomeController@edit')->name('user.edit');
+Route::patch('user.update/{user}', 'HomeController@update')->name('user.update');
+
+
+
 
 Auth::routes();
 
