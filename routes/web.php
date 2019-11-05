@@ -28,6 +28,15 @@ Route::get('user.edit/{id}', 'HomeController@edit')->name('user.edit');
 Route::patch('user.update/{user}', 'HomeController@update')->name('user.update');
 
 
+Route::resource('product','ProductController');
+Route::get('product.index','ProductController@index')->name('product.index');
+Route::get('product.create', 'ProductController@create')->name('product.create');
+Route::post('product.store', 'ProductController@store')->name('product.store');
+Route::post('product.destroy/{product}', 'ProductController@destroy')->name('product.destroy');
+Route::delete('product.destroy/{product}', 'ProductController@destroy');
+
+
+
 
 
 Auth::routes();

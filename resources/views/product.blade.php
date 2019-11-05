@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layout')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Users Dashboard</div>
+                <div class="card-header">Products Dashboard</div>
 
                 <div class="card-body">
                    
@@ -15,30 +15,28 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Edit</th>
+      <th scope="col">price</th>
       <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
-     @foreach($users as $user)
+     @foreach($products as $product)
     <tr>
-      <th scope="row">{{$user->id}}</th>
-      <td>{{$user->name}}</td>
-      <td>{{$user->email}}</td>
-      <td><a href="{{ route('user.edit', $user->id)}}" class="btn btn-primary">Edit</a></td>
+      <th scope="row">{{$product->id}}</th>
+      <td>{{$product->name}}</td>
+      <td>{{$product->price}}</td>
       <td>
-        <form action="{{ route('home.destroy', $user->id)}}" method="post">
+        <form action="{{ route('product.destroy', $product->id)}}" method="post">
            @csrf
            @method('DELETE')
           <button type="submit" class="btn btn-danger">Delete</button>
         </form>
       </td>
     </tr>
-    @endforeach    
+    @endforeach
   </tbody>
 </table>
-<a href="{{ route('product.create')}}" class="btn btn-primary">Create Product</a>
+<a href="{{ route('product.create')}}" class="btn btn-primary">Back</a>
                 </div>
             </div>
         </div>
