@@ -51,8 +51,9 @@ class HomeController extends Controller
             'email' => 'required|max:255',
         ]);
  
-        User::whereId($id)->update($validatedinfo);
-
-        return redirect('/home')->with('success', 'user is successfully updated');
+         User::whereId($id)->update($validatedinfo);
+         return redirect()->route('home')
+                        ->with('success','Product updated successfully');
     }
+    
 }

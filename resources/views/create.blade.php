@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -21,8 +21,6 @@
           </div>
           <div   class="btn-group">
           <button type="submit" class="btn btn-primary">Create Product</button>
-         
-          <a href="{{ route('home')}}" class="btn btn-primary">Home</a></div>
       </form>
     </div>
   </div>
