@@ -9,7 +9,15 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">User Update</div>
+                      
+                           
+                          @if(session('alert-success'))
 
+                            <div class="alert alert-success">
+                                   {{ session('alert-success') }}
+                            </div>
+                           @endif
+                          
                 <div class="card-body">
                    
  <form method="post" action="{{ route('user.update', $user->id) }}">
