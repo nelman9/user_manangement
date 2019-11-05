@@ -91,10 +91,8 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
-
-        $product= Product::findOrFail($product);
         $product->delete();
 
-        return redirect('product');
+        return redirect('/product');
     }
 }
