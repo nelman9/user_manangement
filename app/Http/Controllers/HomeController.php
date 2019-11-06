@@ -52,8 +52,8 @@ class HomeController extends Controller
         ]);
  
          User::whereId($id)->update($validatedinfo);
-        // $request->session()->flash('alert-success', 'User was successful updated!');
-         return redirect()->route('home')->with('alert-success', 'Profile updated!');
+         $request->session()->flash('alert-success', 'User was successful updated!');
+         return redirect()->route('home');
                         
     }
     

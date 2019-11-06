@@ -8,8 +8,12 @@
                 <div class="card-header">Users Dashboard</div>
 
                 <div class="card-body">
-                   
+                  @if(session('alert-success'))
 
+                            <div class="alert alert-success">
+                                   {{ session('alert-success') }}
+                            </div>
+                    @endif
                     <table class="table">
   <thead class="thead-dark">
     <tr>
