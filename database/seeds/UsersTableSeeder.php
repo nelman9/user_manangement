@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use App\User;
-use App\Role;
+use UserM\User;
+use UserM\Role;
 
 
 class UsersTableSeeder extends Seeder
@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
     {
         //
         user::truncate();
-        DB::table('roles_user')->truncate();
+        DB::table('role_user')->truncate();
 
         $adminRole=Role::where('name','admin')->first();
         $authorRole=Role::where('name','author')->first();

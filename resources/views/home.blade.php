@@ -22,6 +22,8 @@
       <th scope="col">Email</th>
       <th scope="col">Edit</th>
       <th scope="col">Delete</th>
+      <th scope="col">Assign Roles</th>
+      <th scope="col">Roles</th>
     </tr>
   </thead>
   <tbody>
@@ -37,6 +39,10 @@
            @method('DELETE')
           <button type="submit" class="btn btn-danger">Delete</button>
         </form>
+      </td>
+      <td><a href="{{ route('user.roles', $user->id)}}" class="btn btn-primary">Roles</td>
+      <td>
+        {{implode(',',$user->roles()->get()->pluck('name')->toArray())}}
       </td>
     </tr>
     @endforeach    

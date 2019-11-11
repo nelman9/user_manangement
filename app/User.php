@@ -2,6 +2,7 @@
 
 namespace UserM;
 
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -38,6 +39,6 @@ class User extends Authenticatable
     ];
 
       public function roles(){
-      return $this-belongsToMany('UserM\Role');
+      return $this->belongsToMany('UserM\Role');
     }
 }

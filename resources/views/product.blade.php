@@ -8,6 +8,12 @@
                 <div class="card-header">Products Dashboard</div>
 
                 <div class="card-body">
+                   @if(session('alert-success'))
+
+                            <div class="alert alert-success">
+                                   {{ session('alert-success') }}
+                            </div>
+                    @endif
                    
 
                     <table class="table">

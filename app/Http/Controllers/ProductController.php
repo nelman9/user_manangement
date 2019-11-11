@@ -50,7 +50,8 @@ class ProductController extends Controller
             'price' => 'required|numeric',
         ]);
         $products= Product::create($validatedData);
-        return redirect('product')->with('Product is successfully saved', $products);
+        $request->session()->flash('alert-success', 'product was successful saved!');
+        return redirect()->route('product.index');
     }
 
     /**
@@ -95,9 +96,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
         $product->delete();
-
-        return redirect('/product');
+        return redirect()->route('product.index');
     }
 }

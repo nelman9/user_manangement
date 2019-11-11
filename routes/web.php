@@ -20,13 +20,13 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::post('home.destroy/{id}', 'HomeController@destroy')->name('home.destroy');
-Route::delete('home.destroy/{id}', 'HomeController@destroy');
+Route::post('home.destroy/{user}', 'HomeController@destroy')->name('home.destroy');
+Route::delete('home.destroy/{user}', 'HomeController@destroy');
 Route::get('user.edit/{id}', 'HomeController@edit')->name('user.edit');
 Route::patch('user.update/{user}', 'HomeController@update')->name('user.update');
+Route::get('user.roles/{user}','admin\RolesController@roles')->name('user.roles');
+Route::patch('roles.update/{user}','admin\RolesController@update')->name('roles.update');
 
-
-Route::resource('product','ProductController');
 Route::get('product.index','ProductController@index')->name('product.index');
 Route::get('product.create', 'ProductController@create')->name('product.create');
 Route::post('product.store', 'ProductController@store')->name('product.store');

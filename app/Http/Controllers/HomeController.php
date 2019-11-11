@@ -1,7 +1,5 @@
 <?php
-
 namespace UserM\Http\Controllers;
-
 
 use UserM\User;
 use Illuminate\Http\Request;
@@ -29,12 +27,12 @@ class HomeController extends Controller
         return view('home')->with('users',$users);
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user= User::findOrFail($id);
+        $user->roles()->detach();
         $user->delete();
 
-        return redirect('/home');
+        return redirect()->route('home');
     }
 
     public function edit($id)
