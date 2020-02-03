@@ -19,18 +19,19 @@
     </div>
                    @endif
                    
-  <form method="POST" action="{{ route('product.store') }}">
+  <form method="post" action="{{ route('product.update', $product->id) }}">
           <div class="form-group">
               @csrf
+              @method('patch')
               <label for="name">Product Name:</label>
-              <input type="text" class="form-control" name="name"/>
+              <input type="text" class="form-control" name="name" value="{{$product->name}}"/>
           </div>
           <div class="form-group">
               <label for="price">Product price :</label>
-              <input type="numeric" class="form-control" name="price"/>
+              <input type="numeric" class="form-control" name="price" value="{{$product->price}}"/>
           </div>
           <div   class="btn-group">
-          <button type="submit" class="btn btn-primary">Create Product</button>
+          <button type="submit" class="btn btn-primary">update Product</button>
       </form>
     </div>
   </div>

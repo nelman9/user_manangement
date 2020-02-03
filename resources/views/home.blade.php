@@ -34,11 +34,13 @@
       <td>{{$user->email}}</td>
       <td><a href="{{ route('user.edit', $user->id)}}" class="btn btn-primary">Edit</a></td>
       <td>
+        @can('delete.user')
         <form action="{{ route('home.destroy', $user->id)}}" method="post">
            @csrf
            @method('DELETE')
           <button type="submit" class="btn btn-danger">Delete</button>
         </form>
+        @endcan
       </td>
       <td><a href="{{ route('user.roles', $user->id)}}" class="btn btn-primary">Roles</td>
       <td>
@@ -48,8 +50,10 @@
     @endforeach    
   </tbody>
 </table>
+@can('create.product')
 <a href="{{ route('product.create')}}" class="btn btn-primary">Create Product</a>
-                </div>
+@endcan
+       </div>
             </div>
         </div>
     </div>

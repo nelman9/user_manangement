@@ -23,6 +23,7 @@
       <th scope="col">Name</th>
       <th scope="col">price</th>
       <th scope="col">Delete</th>
+      <th scope="col">Edit</th>
     </tr>
   </thead>
   <tbody>
@@ -38,6 +39,9 @@
           <button type="submit" class="btn btn-danger">Delete</button>
         </form>
       </td>
+      <td>
+        <a href="{{ route('product.edit', $product->id)}}" class="btn btn-primary">Edit</a>
+        </td>
     </tr>
     @endforeach
   </tbody>

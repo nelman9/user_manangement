@@ -4,6 +4,7 @@ namespace UserM\Http\Controllers\Auth;
 
 use UserM\Http\Controllers\Controller;
 use UserM\User;
+use UserM\Role;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -63,10 +64,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user= User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $role=Role::select('id')->where('name', 'user')->first();
+        $user->roles()->attach($role);
+        return $user;
+
     }
 }

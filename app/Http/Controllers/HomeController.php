@@ -3,6 +3,7 @@ namespace UserM\Http\Controllers;
 
 use UserM\User;
 use Illuminate\Http\Request;
+use Gate;
 
 class HomeController extends Controller
 {
@@ -29,20 +30,28 @@ class HomeController extends Controller
 
     public function destroy(User $user)
     {
+         if(Gate::denies('delete.user')){
+            return Redirect(route('home'));
+        }
+        
         $user->roles()->detach();
         $user->delete();
 
         return redirect()->route('home');
     }
 
-    public function edit($id)
+    public function edit(User $user,$id)
     {
+        if(Gate::denies('edit.user')){
+            return Redirect(route('home'));
+        }
         $user=User::findorFail($id);
         return view('edit', compact('user'));
     }
 
     public function update(Request $request, $id)
     {
+
 
         $validatedinfo = $request->validate([
             'name' => 'required|max:255',
@@ -51,7 +60,7 @@ class HomeController extends Controller
  
          User::whereId($id)->update($validatedinfo);
          $request->session()->flash('alert-success', 'User was successful updated!');
-         return redirect()->route('home');
+         return redirect()->route('product.index');
                         
     }
     

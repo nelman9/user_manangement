@@ -4,6 +4,7 @@ namespace UserM\Http\Controllers;
 
 use UserM\Product;
 use Illuminate\Http\Request;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class ProductController extends Controller
 {
@@ -71,9 +72,11 @@ class ProductController extends Controller
      * @param  \UserM\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Product $product, $id)
     {
         //
+        $product=Product::findorFail($id);
+        return view('productEdit', compact('product'));
     }
 
     /**
@@ -83,9 +86,17 @@ class ProductController extends Controller
      * @param  \UserM\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
         //
+        $validatedinfo= $request->validate([
+             'name' => 'required|max:255',
+             'price' => 'required',
+        ]);
+
+        Product::whereId($id)->update($validatedinfo);
+        $request->session()->flash('alert-success', 'product was successful updated!');
+        return Redirect()->route('product.index');
     }
 
     /**
@@ -94,9 +105,10 @@ class ProductController extends Controller
      * @param  \UserM\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request, Product $product)
     {
         $product->delete();
+        $request->session()->flash('alert-success', 'Product was successfuly deleted');
         return redirect()->route('product.index');
     }
 }
